@@ -1,0 +1,7 @@
+|Ejercicio6
+oQ << oQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+iT => oQ~reg0.ENA
+iCLK => oQ~reg0.CLK
+iRST => oQ~reg0.ACLR
+
+

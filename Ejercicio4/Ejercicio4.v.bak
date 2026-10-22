@@ -1,0 +1,12 @@
+module Ejercicio4 (
+    input iD,     // Entrada de datos D (Switch)
+    input iCLK,   // Entrada de reloj / flanco (Botón o Switch)
+    output reg oQ // Salida Q (LED)
+);
+
+    // Se activa únicamente en el flanco de subida (posedge) del reloj
+    always @(posedge iCLK) begin
+        oQ = iD;
+    end
+
+endmodule
