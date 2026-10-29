@@ -1,0 +1,14 @@
+vendor_name = ModelSim
+source_file = 1, C:/altera/13.1/Proyecto3_ED/Ejercicio9/Ejercicio9.v
+source_file = 1, C:/altera/13.1/Proyecto3_ED/Ejercicio9/db/Ejercicio9.cbx.xml
+design_name = Ejercicio9
+instance = comp, \oQ~output , oQ~output, Ejercicio9, 1
+instance = comp, \oQnot~output , oQnot~output, Ejercicio9, 1
+instance = comp, \iCLK~input , iCLK~input, Ejercicio9, 1
+instance = comp, \iK~input , iK~input, Ejercicio9, 1
+instance = comp, \iJ~input , iJ~input, Ejercicio9, 1
+instance = comp, \oQ~0 , oQ~0, Ejercicio9, 1
+instance = comp, \oQ~reg0feeder , oQ~reg0feeder, Ejercicio9, 1
+instance = comp, \iRST~input , iRST~input, Ejercicio9, 1
+instance = comp, \oQ~reg0 , oQ~reg0, Ejercicio9, 1
+instance = comp, \~QUARTUS_CREATED_GND~I , ~QUARTUS_CREATED_GND~I, Ejercicio9, 1

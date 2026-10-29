@@ -1,0 +1,23 @@
+// Descripción del comportamiento de un registro de desplazamiento universal (Ejercicio 13)
+module Ejercicio13 (
+    input       is1, is0,
+    input       ilfin, irtin,
+    input       iCLK, iClr,
+    input [3:0] iPin,
+    output reg [3:0] oA
+);
+
+    always @ (posedge iCLK or negedge iClr) begin
+        if (~iClr) 
+            oA <= 4'b0000;
+        else begin
+            case ({is1, is0})
+                2'b00: oA <= oA;                    // Sin cambio
+                2'b01: oA <= {irtin, oA[3:1]};      // Desplazamiento a la derecha
+                2'b10: oA <= {oA[2:0], ilfin};      // Desplazamiento a la izquierda
+                2'b11: oA <= iPin;                  // Entrada de carga paralela
+            endcase
+        end
+    end
+
+endmodule

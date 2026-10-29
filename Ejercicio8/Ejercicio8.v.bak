@@ -1,0 +1,26 @@
+// Flip-Flop JK usando tabla característica y sentencia case (Ejercicio 8)
+module ejercicio8 (
+    output reg oQ,
+    output     oQnot,
+    input      iJ,
+    input      iK,
+    input      iCLK,
+    input      iRST
+);
+
+    assign oQnot = ~oQ; // Salida negada complementaria
+
+    always @(posedge iCLK or negedge iRST) begin
+        if (~iRST) 
+            oQ <= 1'b0; // Restablecimiento asincrónico
+        else begin
+            case ({iJ, iK})[cite: 5, 6]
+                2'b00: oQ <= oQ;     // Mantener estado[cite: 5]
+                2'b01: oQ <= 1'b0;   // Reset (0)[cite: 5]
+                2'b10: oQ <= 1'b1;   // Set (1)[cite: 5]
+                2'b11: oQ <= ~oQ;    // Conmutación (Toggle)[cite: 5]
+            endcase
+        end
+    end
+
+endmodule

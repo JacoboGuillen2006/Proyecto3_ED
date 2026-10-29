@@ -1,0 +1,44 @@
+// Diagrama de estados Mealy (Ejercicio 10)
+module Mealy_mdl (
+    input  ix,
+    output reg oy,
+    input  iCLK,
+    input  iRST
+);
+
+    reg [1:0] Prstate, Nxtstate;
+    
+    // Asignación de parámetros binarios de 2 bits para los estados S0 a S3[cite: 9]
+    parameter S0 = 2'b00, S1 = 2'b01, S2 = 2'b10, S3 = 2'b11;[cite: 8, 9]
+
+    // 1. Restablecimiento asincrónico y operación sincrónica con el reloj[cite: 8, 10]
+    always @(posedge iCLK or negedge iRST) begin
+        if (~iRST) 
+            Prstate <= S0;       // Iniciar en el estado inicial S0 (00)[cite: 8, 10]
+        else 
+            Prstate <= Nxtstate; // Actualizar estado en el flanco de subida[cite: 8, 10]
+    end
+
+    // 2. Determinar el siguiente estado basado en Prstate y la entrada ix[cite: 10]
+    always @(Prstate or ix) begin[cite: 8, 10]
+        case (Prstate)[cite: 8, 10]
+            S0: if (ix) Nxtstate = S1; else Nxtstate = S0;[cite: 8]
+            S1: if (ix) Nxtstate = S3; else Nxtstate = S0;[cite: 8]
+            S2: if (~ix) Nxtstate = S0; else Nxtstate = S2;[cite: 8]
+            S3: if (ix) Nxtstate = S2; else Nxtstate = S0;[cite: 8]
+            default: Nxtstate = S0;
+        endcase
+    end
+
+    // 3. Evaluar la salida (Modelo Mealy: función del estado actual y de la entrada)[cite: 6, 10]
+    always @(Prstate or ix) begin[cite: 9, 10]
+        case (Prstate)[cite: 9, 10]
+            S0: oy = 1'b0;[cite: 9]
+            S1: if (ix) oy = 1'b0; else oy = 1'b1;[cite: 9]
+            S2: if (ix) oy = 1'b0; else oy = 1'b1;[cite: 9]
+            S3: if (ix) oy = 1'b0; else oy = 1'b1;[cite: 9]
+            default: oy = 1'b0;
+        endcase
+    end
+
+endmodule

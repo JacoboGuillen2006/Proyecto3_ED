@@ -1,0 +1,15 @@
+|Ejercicio9
+oQ << oQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+oQnot << oQ~reg0.DB_MAX_OUTPUT_PORT_TYPE
+iJ => always0.IN0
+iJ => always0.IN0
+iJ => always0.IN0
+iJ => always0.IN0
+iK => always0.IN1
+iK => always0.IN1
+iK => always0.IN1
+iK => always0.IN1
+iCLK => oQ~reg0.CLK
+iRST => oQ~reg0.ACLR
+
+
