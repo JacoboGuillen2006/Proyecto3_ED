@@ -16,7 +16,7 @@
 // PROGRAM "Quartus II 64-Bit"
 // VERSION "Version 13.1.0 Build 162 10/23/2013 SJ Web Edition"
 
-// DATE "10/22/2026 13:22:00"
+// DATE "10/29/2026 23:34:36"
 
 // 
 // Device: Altera 5CEBA4F23C7 Package FBGA484
@@ -39,10 +39,10 @@ input 	iCLK;
 input 	iRST;
 
 // Design Ports Information
-// oQ	=>  Location: PIN_W21,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// iT	=>  Location: PIN_W9,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// iCLK	=>  Location: PIN_U7,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// iRST	=>  Location: PIN_U13,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// oQ	=>  Location: PIN_AA2,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// iT	=>  Location: PIN_U13,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// iCLK	=>  Location: PIN_V13,	 I/O Standard: 2.5 V,	 Current Strength: Default
+// iRST	=>  Location: PIN_T13,	 I/O Standard: 2.5 V,	 Current Strength: Default
 
 
 wire gnd;
@@ -65,7 +65,7 @@ wire \iRST~input_o ;
 wire \oQ~reg0_q ;
 
 
-// Location: IOOBUF_X50_Y0_N36
+// Location: IOOBUF_X0_Y18_N79
 cyclonev_io_obuf \oQ~output (
 	.i(\oQ~reg0_q ),
 	.oe(vcc),
@@ -81,7 +81,7 @@ defparam \oQ~output .open_drain_output = "false";
 defparam \oQ~output .shift_series_termination_control = "false";
 // synopsys translate_on
 
-// Location: IOIBUF_X10_Y0_N92
+// Location: IOIBUF_X33_Y0_N58
 cyclonev_io_ibuf \iCLK~input (
 	.i(iCLK),
 	.ibar(gnd),
@@ -92,7 +92,7 @@ defparam \iCLK~input .bus_hold = "false";
 defparam \iCLK~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: IOIBUF_X11_Y0_N35
+// Location: IOIBUF_X33_Y0_N41
 cyclonev_io_ibuf \iT~input (
 	.i(iT),
 	.ibar(gnd),
@@ -103,14 +103,14 @@ defparam \iT~input .bus_hold = "false";
 defparam \iT~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: LABCELL_X10_Y1_N51
+// Location: LABCELL_X32_Y1_N51
 cyclonev_lcell_comb \oQ~0 (
 // Equation(s):
 // \oQ~0_combout  = ( \oQ~reg0_q  & ( !\iT~input_o  ) ) # ( !\oQ~reg0_q  & ( \iT~input_o  ) )
 
-	.dataa(!\iT~input_o ),
+	.dataa(gnd),
 	.datab(gnd),
-	.datac(gnd),
+	.datac(!\iT~input_o ),
 	.datad(gnd),
 	.datae(gnd),
 	.dataf(!\oQ~reg0_q ),
@@ -123,11 +123,11 @@ cyclonev_lcell_comb \oQ~0 (
 	.shareout());
 // synopsys translate_off
 defparam \oQ~0 .extended_lut = "off";
-defparam \oQ~0 .lut_mask = 64'h55555555AAAAAAAA;
+defparam \oQ~0 .lut_mask = 64'h0F0F0F0FF0F0F0F0;
 defparam \oQ~0 .shared_arith = "off";
 // synopsys translate_on
 
-// Location: LABCELL_X10_Y1_N18
+// Location: LABCELL_X32_Y1_N42
 cyclonev_lcell_comb \oQ~reg0feeder (
 // Equation(s):
 // \oQ~reg0feeder_combout  = ( \oQ~0_combout  )
@@ -151,7 +151,7 @@ defparam \oQ~reg0feeder .lut_mask = 64'h00000000FFFFFFFF;
 defparam \oQ~reg0feeder .shared_arith = "off";
 // synopsys translate_on
 
-// Location: IOIBUF_X33_Y0_N41
+// Location: IOIBUF_X34_Y0_N1
 cyclonev_io_ibuf \iRST~input (
 	.i(iRST),
 	.ibar(gnd),
@@ -162,7 +162,7 @@ defparam \iRST~input .bus_hold = "false";
 defparam \iRST~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: FF_X10_Y1_N20
+// Location: FF_X32_Y1_N44
 dffeas \oQ~reg0 (
 	.clk(\iCLK~input_o ),
 	.d(\oQ~reg0feeder_combout ),
@@ -181,7 +181,7 @@ defparam \oQ~reg0 .is_wysiwyg = "true";
 defparam \oQ~reg0 .power_up = "low";
 // synopsys translate_on
 
-// Location: MLABCELL_X49_Y21_N3
+// Location: LABCELL_X48_Y21_N3
 cyclonev_lcell_comb \~QUARTUS_CREATED_GND~I (
 // Equation(s):
 

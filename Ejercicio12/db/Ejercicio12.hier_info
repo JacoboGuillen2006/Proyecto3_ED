@@ -1,8 +1,8 @@
 |Ejercicio12
 x => TB.IN1
-y << y.DB_MAX_OUTPUT_PORT_TYPE
-A << T_FF:AF.port0
-B << T_FF:BF.port0
+y <= y.DB_MAX_OUTPUT_PORT_TYPE
+A <= T_FF:AF.Q
+B <= T_FF:BF.Q
 CLK => CLK.IN2
 RST => RST.IN2
 

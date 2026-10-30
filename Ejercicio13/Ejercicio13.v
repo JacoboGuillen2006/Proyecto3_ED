@@ -1,21 +1,27 @@
-// Descripción del comportamiento de un registro de desplazamiento universal
-// definido en la figura 7 y en la figura 8 (tabla)
-module Ejercicio13 (is1, is0, iPin, ilfin, irtin, oA, iCLK, iClr);
-    input       is1, is0;       // Seleccionar entradas[cite: 14]
-    input       ilfin, irtin;   // Entradas en serie[cite: 14]
-    input       iCLK, iClr;     // Reloj y Clear[cite: 14]
-    input [3:0] iPin;           // Entrada paralela[cite: 14]
-    output reg [3:0] oA;        // Salida del registro[cite: 14]
+// Registro de desplazamiento universal de 4 bits
+// Ejercicio 13
 
-    always @ (posedge iCLK or negedge iClr) begin
-        if (~iClr) 
+module Ejercicio13 (
+    input        is1,
+    input        is0,
+    input        ilfin,
+    input        irtin,
+    input  [3:0] iPin,
+    input        iCLK,
+    input        iClr,
+    output reg [3:0] oA
+);
+
+    always @(posedge iCLK or negedge iClr) begin
+        if (!iClr)
             oA <= 4'b0000;
         else begin
             case ({is1, is0})
-                2'b00: oA <= oA;                  // Sin cambio[cite: 14]
-                2'b01: oA <= {irtin, oA[3:1]};    // Desplazamiento a la derecha[cite: 14]
-                2'b10: oA <= {oA[2:0], ilfin};    // Desplazamiento a la izquierda[cite: 14]
-                2'b11: oA <= iPin;                // Entrada de carga paralela[cite: 14]
+                2'b00: oA <= oA;                 // Mantener
+                2'b01: oA <= {irtin, oA[3:1]};  // Desplazar derecha
+                2'b10: oA <= {oA[2:0], ilfin};  // Desplazar izquierda
+                2'b11: oA <= iPin;               // Carga paralela
+                default: oA <= oA;
             endcase
         end
     end

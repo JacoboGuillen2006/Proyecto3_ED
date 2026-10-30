@@ -1,5 +1,5 @@
 Assembler report for Ejercicio15
-Thu Oct 29 13:28:06 2026
+Fri Oct 30 01:41:31 2026
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Oct 29 13:28:06 2026 ;
+; Assembler Status      ; Successful - Fri Oct 30 01:41:31 2026 ;
 ; Revision Name         ; Ejercicio15                           ;
 ; Top-level Entity Name ; Ejercicio15                           ;
 ; Family                ; Cyclone V                             ;
@@ -92,8 +92,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                                       ;
 +----------------+-------------------------------------------------------------------------------+
 ; Device         ; 5CEBA4F23C7                                                                   ;
-; JTAG usercode  ; 0x004EA2F8                                                                    ;
-; Checksum       ; 0x004EA2F8                                                                    ;
+; JTAG usercode  ; 0x004EA55E                                                                    ;
+; Checksum       ; 0x004EA55E                                                                    ;
 +----------------+-------------------------------------------------------------------------------+
 
 
@@ -103,13 +103,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Thu Oct 29 13:27:36 2026
+    Info: Processing started: Fri Oct 30 01:41:20 2026
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off Ejercicio15 -c Ejercicio15
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 4706 megabytes
-    Info: Processing ended: Thu Oct 29 13:28:07 2026
-    Info: Elapsed time: 00:00:31
-    Info: Total CPU time (on all processors): 00:00:17
+    Info: Peak virtual memory: 4708 megabytes
+    Info: Processing ended: Fri Oct 30 01:41:31 2026
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:10
 
 

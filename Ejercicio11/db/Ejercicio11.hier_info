@@ -8,7 +8,7 @@ ix => Selector0.IN1
 ix => state.DATAB
 iCLK => state~3.DATAIN
 iRST => state~5.DATAIN
-oAB[0] << oAB.DB_MAX_OUTPUT_PORT_TYPE
-oAB[1] << oAB.DB_MAX_OUTPUT_PORT_TYPE
+oAB[0] <= oAB.DB_MAX_OUTPUT_PORT_TYPE
+oAB[1] <= oAB.DB_MAX_OUTPUT_PORT_TYPE
 
 

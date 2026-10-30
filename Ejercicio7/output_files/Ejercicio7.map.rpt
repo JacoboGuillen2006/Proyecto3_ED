@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Ejercicio7
-Sat Oct 24 13:38:07 2026
+Thu Oct 29 23:44:56 2026
 Quartus II 64-Bit Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
 
 
@@ -41,7 +41,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                 ;
 +---------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Oct 24 13:38:06 2026      ;
+; Analysis & Synthesis Status     ; Successful - Thu Oct 29 23:44:56 2026      ;
 ; Quartus II 64-Bit Version       ; 13.1.0 Build 162 10/23/2013 SJ Web Edition ;
 ; Revision Name                   ; Ejercicio7                                 ;
 ; Top-level Entity Name           ; Ejercicio7                                 ;
@@ -224,7 +224,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -234,7 +234,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.1.0 Build 162 10/23/2013 SJ Web Edition
-    Info: Processing started: Sat Oct 24 13:38:00 2026
+    Info: Processing started: Thu Oct 29 23:44:51 2026
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Ejercicio7 -c Ejercicio7
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 2 entities, in source file ejercicio7.v
@@ -250,9 +250,9 @@ Info (21057): Implemented 6 device resources after synthesis - the final resourc
     Info (21059): Implemented 1 output pins
     Info (21061): Implemented 1 logic cells
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4663 megabytes
-    Info: Processing ended: Sat Oct 24 13:38:07 2026
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Peak virtual memory: 4662 megabytes
+    Info: Processing ended: Thu Oct 29 23:44:56 2026
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:04
 
 

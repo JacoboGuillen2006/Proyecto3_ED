@@ -1,68 +1,55 @@
-// Descripción estructural de circuito secuencial (Ejercicio 12)
+// Ejercicio 12
+// Circuito secuencial estructural con flip-flops T
+
 module Ejercicio12 (
-    input  x,
-    output y,
-    output A,
-    output B,
-    input  CLK,
-    input  RST
+    input  wire x,
+    output wire y,
+    output wire A,
+    output wire B,
+    input  wire CLK,
+    input  wire RST
 );
 
-    wire TA, TB;
+    wire TA;
+    wire TB;
 
-    // Ecuaciones de entrada de flip-flop y ecuación de salida
-    assign TB = x;          // Ecuación de entrada para el flip-flop B[cite: 13]
-    assign TA = x & B;      // Ecuación de entrada para el flip-flop A[cite: 13]
-    assign y  = A & B;      // Ecuación de salida (y = 1 cuando la cuenta llega a 11 binario)[cite: 12, 13]
+    // Ecuaciones de entrada y salida
+    assign TB = x;
+    assign TA = x & B;
+    assign y  = A & B;
 
-    // Se crean ejemplares de los flip-flops T (BF y AF)[cite: 12, 13]
-    T_FF BF (B, TB, CLK, RST);
-    T_FF AF (A, TA, CLK, RST);
+    // Flip-flop T para el bit B
+    T_FF BF (
+        .Q   (B),
+        .T   (TB),
+        .CLK (CLK),
+        .RST (RST)
+    );
+
+    // Flip-flop T para el bit A
+    T_FF AF (
+        .Q   (A),
+        .T   (TA),
+        .CLK (CLK),
+        .RST (RST)
+    );
 
 endmodule
 
 
-// Módulo auxiliar: Flip-flop T[cite: 12, 15]
+// Modulo auxiliar: flip-flop T
 module T_FF (
-    output reg Q,
-    input      T,
-    input      CLK,
-    input      RST
+    output reg  Q,
+    input  wire T,
+    input  wire CLK,
+    input  wire RST
 );
 
-    always @ (posedge CLK or negedge RST) begin
-        if (~RST) 
-            Q <= 1'b0;      // Restablecimiento asincrónico a 0[cite: 15]
-        else 
-            Q <= Q ^ T;     // Ecuación característica Q(t+1) = Q (+) T[cite: 15]
-    end
-
-endmodule
-
-
-// Módulo de estímulo para probar el circuito secuencial[cite: 12, 15]
-module testTcircuit;
-    reg  x, CLK, RST;
-    wire y, A, B;
-
-    // Se crea un ejemplar del circuito principal[cite: 14]
-    Tcircuit TC (x, y, A, B, CLK, RST);
-
-    // Generación de señales de control (CLK y RST)[cite: 15]
-    initial begin
-        RST = 0;
-        CLK = 0;
-        #5 RST = 1;
-        repeat (16)
-            #5 CLK = ~CLK;
-    end
-
-    // Generación de estímulos para la entrada x[cite: 15]
-    initial begin
-        x = 0;
-        #15 x = 1;
-        repeat (8)
-            #10 x = ~x;
+    always @(posedge CLK or negedge RST) begin
+        if (!RST)
+            Q <= 1'b0;
+        else
+            Q <= Q ^ T;
     end
 
 endmodule

@@ -1,4 +1,7 @@
 // Flip-Flop JK usando tabla característica y estructuras if - else if (Ejercicio 9)
+// Flip-Flop JK usando sentencias if-else
+// Ejercicio 9
+
 module Ejercicio9 (
     output reg oQ,
     output     oQnot,
@@ -8,20 +11,21 @@ module Ejercicio9 (
     input      iRST
 );
 
-    assign oQnot = ~oQ; // Salida negada complementaria
+    // Salida complementaria
+    assign oQnot = ~oQ;
 
     always @(posedge iCLK or negedge iRST) begin
-        if (~iRST) 
-            oQ <= 1'b0; // Restablecimiento asincrónico
+        if (!iRST)
+            oQ <= 1'b0;  // Reset asincronico activo en bajo
         else begin
             if ((iJ == 1'b0) && (iK == 1'b0))
-                oQ <= oQ;     // Mantener estado
+                oQ <= oQ;      // Mantener estado
             else if ((iJ == 1'b1) && (iK == 1'b0))
-                oQ <= 1'b1;   // Set (1)
+                oQ <= 1'b1;    // Set
             else if ((iJ == 1'b0) && (iK == 1'b1))
-                oQ <= 1'b0;   // Reset (0)
-            else if ((iJ == 1'b1) && (iK == 1'b1))
-                oQ <= ~oQ;    // Conmutación (Toggle)
+                oQ <= 1'b0;    // Reset
+            else
+                oQ <= ~oQ;     // Conmutar: J=1, K=1
         end
     end
 

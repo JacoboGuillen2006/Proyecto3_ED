@@ -1,40 +1,46 @@
-// Módulo Principal: Flip-flop JK hecho con Flip-flop D y compuertas
+// Modulo principal: Flip-flop JK construido
+// a partir de un flip-flop D y compuertas
+
 module Ejercicio7 (
-    output oQ,
-    input  iJ,
-    input  iK,
-    input  iCLK,
-    input  iRST
+    output wire oQ,
+    input  wire iJ,
+    input  wire iK,
+    input  wire iCLK,
+    input  wire iRST
 );
 
     wire JK;
 
-    // Ecuación característica para el Flip-Flop JK: JQ' + K'Q
+    // Ecuacion caracteristica del flip-flop JK:
+    // Q(t+1) = JQ' + K'Q
     assign JK = (iJ & ~oQ) | (~iK & oQ);
 
-    // Instancia (ejemplar) del módulo Flip-Flop D
+    // Instancia del flip-flop D
     D_FF JK1 (
-        .Q(oQ),
-        .D(JK),
-        .CLK(iCLK),
-        .RST(iRST)
+        .Q   (oQ),
+        .D   (JK),
+        .CLK (iCLK),
+        .RST (iRST)
     );
 
 endmodule
 
-// Módulo Secundario: Flip-flop D con restablecimiento asincrónico
+
+// Modulo secundario: Flip-flop D
+// con restablecimiento asincronico activo en bajo
+
 module D_FF (
-    output reg Q,
-    input      D,
-    input      CLK,
-    input      RST
+    output reg  Q,
+    input  wire D,
+    input  wire CLK,
+    input  wire RST
 );
 
     always @(posedge CLK or negedge RST) begin
-        if (~RST) 
-            Q <= 1'b0; // Restablecimiento asincrónico activo en bajo
-        else 
-            Q <= D;    // Asignación sincrónica
+        if (!RST)
+            Q <= 1'b0;
+        else
+            Q <= D;
     end
 
 endmodule

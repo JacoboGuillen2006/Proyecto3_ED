@@ -1,5 +1,5 @@
 |Ejercicio7
-oQ << D_FF:JK1.Q
+oQ <= D_FF:JK1.Q
 iJ => JK.IN1
 iK => JK.IN1
 iCLK => iCLK.IN1

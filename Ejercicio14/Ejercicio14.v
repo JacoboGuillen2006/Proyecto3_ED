@@ -1,40 +1,98 @@
-// Descripción estructural de registro universal de desplazamiento
-module Ejercicio14 (iI, iselect, ilfin, irtin, oA, iCLK, iClr);
-    input [3:0] iI;         // Entrada paralela
-    input [1:0] iselect;    // Seleccionar modo
-    input ilfin, irtin, iCLK, iClr; // Entradas en serie, reloj, clear
-    output [3:0] oA;        // Salida paralela
+// Descripcion estructural de un registro universal
+// de desplazamiento de 4 bits
 
-    // Crear ejemplares para las cuatro etapas
-    stage ST0 (oA[0], oA[1], ilfin, iI[0], oA[0], iselect, iCLK, iClr);
-    stage ST1 (oA[1], oA[2], oA[0], iI[1], oA[1], iselect, iCLK, iClr);
-    stage ST2 (oA[2], oA[3], oA[1], iI[2], oA[2], iselect, iCLK, iClr);
-    stage ST3 (oA[3], irtin, oA[2], iI[3], oA[3], iselect, iCLK, iClr);
+module Ejercicio14 (
+    input  wire [3:0] iI,
+    input  wire [1:0] iselect,
+    input  wire       ilfin,
+    input  wire       irtin,
+    input  wire       iCLK,
+    input  wire       iClr,
+    output wire [3:0] oA
+);
+
+    // Etapa correspondiente al bit 0
+    stage ST0 (
+        .i0     (oA[0]),
+        .i1     (oA[1]),
+        .i2     (ilfin),
+        .i3     (iI[0]),
+        .Q      (oA[0]),
+        .select (iselect),
+        .CLK    (iCLK),
+        .Clr    (iClr)
+    );
+
+    // Etapa correspondiente al bit 1
+    stage ST1 (
+        .i0     (oA[1]),
+        .i1     (oA[2]),
+        .i2     (oA[0]),
+        .i3     (iI[1]),
+        .Q      (oA[1]),
+        .select (iselect),
+        .CLK    (iCLK),
+        .Clr    (iClr)
+    );
+
+    // Etapa correspondiente al bit 2
+    stage ST2 (
+        .i0     (oA[2]),
+        .i1     (oA[3]),
+        .i2     (oA[1]),
+        .i3     (iI[2]),
+        .Q      (oA[2]),
+        .select (iselect),
+        .CLK    (iCLK),
+        .Clr    (iClr)
+    );
+
+    // Etapa correspondiente al bit 3
+    stage ST3 (
+        .i0     (oA[3]),
+        .i1     (irtin),
+        .i2     (oA[2]),
+        .i3     (iI[3]),
+        .Q      (oA[3]),
+        .select (iselect),
+        .CLK    (iCLK),
+        .Clr    (iClr)
+    );
+
 endmodule
 
-// Una etapa del registro de desplazamiento
-module stage (i0, i1, i2, i3, Q, select, CLK, Clr);
-    input i0, i1, i2, i3, CLK, Clr;
-    input [1:0] select;
-    output reg Q;
+
+// Una etapa del registro universal
+module stage (
+    input  wire       i0,
+    input  wire       i1,
+    input  wire       i2,
+    input  wire       i3,
+    output reg        Q,
+    input  wire [1:0] select,
+    input  wire       CLK,
+    input  wire       Clr
+);
 
     reg D;
 
-    // Multiplexor 4x1
-    always @ (i0 or i1 or i2 or i3 or select)
-    begin
+    // Multiplexor 4 a 1
+    always @(*) begin
         case (select)
-            2'b00: D = i0;
-            2'b01: D = i1;
-            2'b10: D = i2;
-            2'b11: D = i3;
+            2'b00: D = i0;  // Mantener
+            2'b01: D = i1;  // Desplazar a la derecha
+            2'b10: D = i2;  // Desplazar a la izquierda
+            2'b11: D = i3;  // Carga paralela
+            default: D = i0;
         endcase
     end
 
-    // Flip-flop D
-    always @ (posedge CLK or negedge Clr)
-    begin
-        if (~Clr) Q = 1'b0;
-        else Q = D;
+    // Flip-flop D con clear asincronico activo en bajo
+    always @(posedge CLK or negedge Clr) begin
+        if (!Clr)
+            Q <= 1'b0;
+        else
+            Q <= D;
     end
+
 endmodule
